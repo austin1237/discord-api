@@ -1,0 +1,13 @@
+version: '3'
+volumes:
+  local_terraform_modules:
+services:
+
+  discordapi:
+    build: ./discordapi
+    command: bash -c "go install . && discordapi "
+    volumes:
+      - ./discordapi:/go/src/github.com/user/discordapi
+    environment:
+      DISCORD_SECRET: ${DISCORD_SECRET}
+      DISCORD_ID: ${DISCORD_ID}
